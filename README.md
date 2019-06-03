@@ -1,5 +1,5 @@
 # readConfig
-This is a simple program built in Golang.
+This is a simple program to read values from a config file built in Golang.
 
 This program reads config data from a conf.yaml file and loads it into a defined struct, using viper and fsNotify.
 
