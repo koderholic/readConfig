@@ -7,14 +7,13 @@ import (
 	"github.com/spf13/viper"
 )
 
-type conf struct {
-	Suffix  string `yaml:"suffix"`
-	Keyword string `yaml:"keyword"`
+type config struct {
+	Test  string `yaml:"test"`
 }
 
-func (c *conf) getConf() {
+func (c *config) getConfig() {
 
-	viper.SetConfigName("conf")
+	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
 	viper.WatchConfig()
 	err := viper.ReadInConfig()
@@ -28,15 +27,16 @@ func (c *conf) getConf() {
 			panic(fmt.Errorf("Fatal error config file: %s \n", err))
 		}
 		viper.Unmarshal(c)
+		fmt.Printf("%+v", c)
 	})
 	viper.Unmarshal(c)
 }
 
 func main() {
 	done := make(chan bool)
-	var config conf
-	go config.getConf()
+	var Config config
+	Config.getConfig()
 
-	fmt.Println(config.Keyword)
+	fmt.Printf("%+v", Config)
 	<-done
 }
